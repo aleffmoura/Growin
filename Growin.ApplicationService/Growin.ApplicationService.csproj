@@ -10,7 +10,6 @@
     <Folder Include="BackgroundServices\" />
     <Folder Include="Features\Orders\QueryHandlers\" />
     <Folder Include="Features\Orders\Queries\" />
-    <Folder Include="Mappers\" />
   </ItemGroup>
 
   <ItemGroup>

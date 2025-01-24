@@ -5,4 +5,6 @@ public record class Entity<TEntity, TId>
     where TId : notnull
 {
     public required TId Id { get; init; }
+    public required DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; set; } = null;
 }
