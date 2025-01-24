@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Features\" />
-    <Folder Include="Context\" />
+    <Folder Include="BackgroundServices\" />
+    <Folder Include="Mappers\" />
   </ItemGroup>
 
   <ItemGroup>
