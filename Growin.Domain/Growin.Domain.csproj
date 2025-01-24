@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Enums\" />
+    <PackageReference Include="FunctionalConcepts" Version="6.0.0.4" />
   </ItemGroup>
 
 </Project>
