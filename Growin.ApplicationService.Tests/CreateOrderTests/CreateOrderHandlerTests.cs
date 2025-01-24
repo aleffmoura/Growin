@@ -2,6 +2,7 @@
 
 using AutoMapper;
 using FluentAssertions;
+using FunctionalConcepts.Errors;
 using FunctionalConcepts.Results;
 using Growin.ApplicationService.Features.Orders.Commands;
 using Growin.ApplicationService.Features.Orders.CommandsHandlers;
@@ -50,6 +51,43 @@ public class CreateOrderHandlerTests
         id.Should().Be(idCreated);
     }
 
+    [Test]
+    public async Task CreateOrderHandlerTests_Handle_Create_AddAsyncThrowsExnBut_ShouldBeError()
+    {
+        // Arrange
+        var cancellationToken = new CancellationTokenSource().Token;
+
+        var command = CreateCommand(1, 100);
+        var order = CreateOrder(command);
+
+        _mockMapper.Setup(x => x.Map<Order>(command))
+                   .Returns(order);
+
+        var exn = new InvalidDataException();
+        _mockOrderWriteRepository.Setup(x => x.AddAsync(order, cancellationToken))
+            .Throws(exn);
+
+        // Act
+        var result = await _handler.Handle(command, cancellationToken);
+
+        // Asserts
+        result.IsSuccess.Should().BeFalse();
+        result.IsFail.Should().BeTrue();
+        _mockMapper.Verify(x => x.Map<Order>(command));
+        _mockMapper.VerifyNoOtherCalls();
+        _mockOrderWriteRepository.Verify(x => x.AddAsync(order, cancellationToken));
+        _mockOrderWriteRepository.VerifyNoOtherCalls();
+        BaseError? baseError = null;
+        result.Else(err => baseError = err);
+        baseError.Should().NotBeNull();
+        baseError.Should()
+            .BeOfType<UnhandledError>()
+            .Subject.Message
+            .Should()
+            .Be("Handled exception on create order");
+    }
+
+    #region Private mathods
     CreateOrderCommand CreateCommand(long productId, ulong quantity) => new()
     {
         ProductId = productId,
@@ -61,6 +99,8 @@ public class CreateOrderHandlerTests
         Id = 0,
         ProductId = createOrderCommand.ProductId,
         Quantity = createOrderCommand.Quantity,
-        Status = Domain.Enums.EOrderStatus.Reserved
+        Status = Domain.Enums.EOrderStatus.Reserved,
+        CreatedAt = DateTime.UtcNow
     };
+    #endregion
 }
