@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compose", "Compose", "{FB01
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18053471-1E46-48C7-9E85-87CF3EC00BDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growin.ApplicationService.Tests", "Growin.ApplicationService.Tests\Growin.ApplicationService.Tests.csproj", "{1B0A0D70-D498-4028-8F1D-E4853A2CC72A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{18053471-1E46-48C7-9E85-87CF3EC00BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18053471-1E46-48C7-9E85-87CF3EC00BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18053471-1E46-48C7-9E85-87CF3EC00BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0A0D70-D498-4028-8F1D-E4853A2CC72A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0A0D70-D498-4028-8F1D-E4853A2CC72A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0A0D70-D498-4028-8F1D-E4853A2CC72A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0A0D70-D498-4028-8F1D-E4853A2CC72A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,5 +74,6 @@ Global
 		{35A4CBE9-BF3E-47C3-93D1-1C591631ECA0} = {2C88FC16-320B-4B88-B346-151F6996E232}
 		{172E99E5-95E9-49A7-92A7-854CFF79B1FA} = {82AD45BC-02DE-41A8-B09B-5143CAC0FA4F}
 		{18053471-1E46-48C7-9E85-87CF3EC00BDE} = {FB01FD7D-62E8-4498-B8B0-B2DB412FA665}
+		{1B0A0D70-D498-4028-8F1D-E4853A2CC72A} = {82AD45BC-02DE-41A8-B09B-5143CAC0FA4F}
 	EndGlobalSection
 EndGlobal
