@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growin.Api", "Growin.Api\Growin.Api.csproj", "{FF990662-1628-4306-A239-9DA8CEB456BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Application", "1. Application", "{CC50CBBF-D76D-452B-BE0A-6A2C0825388C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{2C88FC16-320B-4B88-B346-151F6996E232}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{E668099A-A929-4578-8D68-961B53EB3F4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infra", "4. Infra", "{562D6AEC-A11A-4A1D-A1BA-A00486736125}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growin.Infra", "Growin.Infra\Growin.Infra.csproj", "{B7E6FFC3-5EAF-4720-B6D2-D34D1B9372BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF990662-1628-4306-A239-9DA8CEB456BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF990662-1628-4306-A239-9DA8CEB456BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF990662-1628-4306-A239-9DA8CEB456BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF990662-1628-4306-A239-9DA8CEB456BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E6FFC3-5EAF-4720-B6D2-D34D1B9372BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E6FFC3-5EAF-4720-B6D2-D34D1B9372BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E6FFC3-5EAF-4720-B6D2-D34D1B9372BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E6FFC3-5EAF-4720-B6D2-D34D1B9372BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FF990662-1628-4306-A239-9DA8CEB456BE} = {CC50CBBF-D76D-452B-BE0A-6A2C0825388C}
+		{B7E6FFC3-5EAF-4720-B6D2-D34D1B9372BA} = {562D6AEC-A11A-4A1D-A1BA-A00486736125}
+	EndGlobalSection
+EndGlobal

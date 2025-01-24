@@ -1,0 +1,6 @@
+@Growin.Api_HostAddress = http://localhost:5163
+
+GET {{Growin.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
