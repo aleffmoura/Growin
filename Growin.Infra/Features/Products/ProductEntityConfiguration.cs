@@ -21,7 +21,8 @@ internal class ProductEntityConfiguration : IEntityTypeConfiguration<Product>
         builder.HasData(new Product
         {
             Id = 1,
-            Name = "Product Test"
+            Name = "Product Test",
+            CreatedAt = DateTime.UtcNow,
         });
     }
 }
