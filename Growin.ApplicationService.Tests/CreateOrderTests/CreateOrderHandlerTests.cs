@@ -88,7 +88,7 @@ public class CreateOrderHandlerTests
     }
 
     #region Private mathods
-    CreateOrderCommand CreateCommand(long productId, ulong quantity) => new()
+    CreateOrderCommand CreateCommand(long productId, long quantity) => new()
     {
         ProductId = productId,
         Quantity = quantity
@@ -98,9 +98,9 @@ public class CreateOrderHandlerTests
     {
         Id = 0,
         ProductId = createOrderCommand.ProductId,
-        Quantity = createOrderCommand.Quantity,
+        Quantity = (ulong)createOrderCommand.Quantity,
         Status = Domain.Enums.EOrderStatus.Reserved,
-        CreatedAt = DateTime.UtcNow
+        CreatedAt = DateTime.UtcNow,
     };
     #endregion
 }
