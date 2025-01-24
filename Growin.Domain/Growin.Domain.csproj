@@ -8,11 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Features\" />
-    <Folder Include="Context\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Growin.Domain\Growin.Domain.csproj" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>
