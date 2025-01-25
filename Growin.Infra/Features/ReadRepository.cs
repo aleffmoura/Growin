@@ -12,8 +12,12 @@ public class ReadRepository<TEntity>(GrowinDbContext dbContext) : IReadRepositor
 {
     private readonly GrowinDbContext _dbContext = dbContext;
 
-    public Task<Option<TEntity>> GetAsync(long id, CancellationToken cancellationToken)
+    public async Task<Option<TEntity>> GetAsync(long id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var entity =
+            await _dbContext.Set<TEntity>()
+                            .FindAsync([id], cancellationToken);
+
+        return entity ?? new Option<TEntity>();
     }
 }

@@ -23,11 +23,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{82AD45BC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growin.Arch.Tests", "Growin.Arch.Tests\Growin.Arch.Tests.csproj", "{172E99E5-95E9-49A7-92A7-854CFF79B1FA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compose", "Compose", "{FB01FD7D-62E8-4498-B8B0-B2DB412FA665}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Compose", "0. Compose", "{FB01FD7D-62E8-4498-B8B0-B2DB412FA665}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18053471-1E46-48C7-9E85-87CF3EC00BDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growin.ApplicationService.Tests", "Growin.ApplicationService.Tests\Growin.ApplicationService.Tests.csproj", "{1B0A0D70-D498-4028-8F1D-E4853A2CC72A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. External Itens", "0. External Itens", "{29DF5C15-B38F-4BF4-AF16-36FA809920B1}"
+	ProjectSection(SolutionItems) = preProject
+		.env = .env
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
