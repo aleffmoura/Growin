@@ -21,7 +21,9 @@ public class ReadRepository<TEntity>(GrowinDbContext dbContext) : IReadRepositor
     {
         var entity =
             await _dbContext.Set<TEntity>()
-                            .FindAsync([id], cancellationToken);
+                            .AsNoTracking()
+                            .Where(x => x.Id == id)
+                            .FirstOrDefaultAsync();
 
         return entity ?? new Option<TEntity>();
     }
