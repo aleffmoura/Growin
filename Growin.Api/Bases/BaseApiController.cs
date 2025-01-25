@@ -47,10 +47,12 @@ public class BaseApiController(IMediator mediator, IMapper mapper) : ControllerB
             ODataQueryOptions<TView> queryOptions)
     {
         var projectTo = query.ProjectTo<TView>(_mapper.ConfigurationProvider);
+
         var queryResults = queryOptions.ApplyTo(projectTo);
         var oDataFeature = Request.HttpContext.ODataFeature();
+        var queryFilter = queryResults.Provider.CreateQuery<TView>(queryResults.Expression);
 
-        return new PageResult<TView>(queryResults.Provider.CreateQuery<TView>(queryResults.Expression),
+        return new PageResult<TView>(queryFilter,
                                      oDataFeature.NextLink,
                                      oDataFeature.TotalCount);
     }

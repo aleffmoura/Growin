@@ -8,6 +8,7 @@ using Growin.ApplicationService.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Results;
 
 [ApiController]
 [Route("[controller]")]
@@ -20,7 +21,7 @@ public class OrdersController(IMediator mediator, IMapper mapper)
             => await HandleCommand(createCmd);
 
     [HttpGet]
-    [ProducesResponseType<IQueryable<OrderResumeViewModel>>(statusCode: 200)]
+    [ProducesResponseType<PageResult<OrderResumeViewModel>>(statusCode: 200)]
     public async Task<IActionResult> Get(ODataQueryOptions<OrderResumeViewModel> queryOptions)
         => await HandleQueryable(new OrderCollectionQuery(), queryOptions);
 }
