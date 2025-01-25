@@ -28,6 +28,10 @@ public class GlobalModule<TProgram> : Module
                .As<IOrderWriteRepository>()
                .InstancePerLifetimeScope();
 
+        builder.RegisterType<OrderReadRepository>()
+               .As<IOrderReadRepository>()
+               .InstancePerLifetimeScope();
+
         builder.RegisterType<ProductWriteRepository>()
                .As<IProductWriteRepository>()
                .InstancePerLifetimeScope();
