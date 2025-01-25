@@ -1,8 +1,10 @@
 ﻿namespace Growin.Api.Filters;
 
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.OData.UriParser;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Numerics;
 
 public class CustomHeaderSwaggerAttribute : IOperationFilter
 {
@@ -20,25 +22,25 @@ public class CustomHeaderSwaggerAttribute : IOperationFilter
         var paramsRemove = operation.Parameters.Where(op => oDataParamsNames.Contains(op.Name)).ToList();
         paramsRemove.ForEach(item => operation.Parameters.Remove(item));
 
-        var oDataParams = new string[]
-         {
-            "$count",
-            "$expand",
-            "$filter",
-            "$orderBy",
-            "$search",
-            "$select",
-            "$skip",
-            "$top"
-         };
+        List<(string name, string type)> oDataParams =
+        [
+            ("$count", nameof(Boolean)),
+            ("$expand", "string"),
+            ("$filter", "string"),
+            ("$orderBy", "string"),
+            ("$search", "string"),
+            ("$select", "string"),
+            ("$skip", "Integer"),
+            ("$top", "Integer")
+        ];
 
-        foreach (var item in oDataParams)
+        foreach (var (name, type) in oDataParams)
         {
             operation.Parameters.Add(new OpenApiParameter
             {
-                Name = item,
+                Name = name,
                 In = ParameterLocation.Query,
-                Schema = new OpenApiSchema { Type = "string" }
+                Schema = new OpenApiSchema { Type = type }
             });
         }
     }
