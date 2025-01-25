@@ -10,9 +10,12 @@ internal class OrderEntityConfiguration : IEntityTypeConfiguration<Order>
     public void Configure(EntityTypeBuilder<Order> builder)
     {
         builder.ToTable(TABLE_NAME);
-        builder.HasKey(e => e.Id);
-        builder.Property(e => e.Quantity).IsRequired();
-        builder.Property(e => e.Status).IsRequired();
-        builder.Property(e => e.ProductId).IsRequired();
+        builder.HasKey(p => p.Id);
+        builder.Property(p => p.Quantity).IsRequired();
+        builder.Property(p => p.Status).IsRequired();
+        builder.Property(p => p.ProductId)
+               .IsRequired();
+
+        builder.HasIndex(p => p.ProductId);
     }
 }
