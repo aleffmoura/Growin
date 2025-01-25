@@ -20,8 +20,14 @@ public class WriteRepository<TEntity>(GrowinDbContext dbContext) : IWriteReposit
         return entityEntry.Entity;
     }
 
-    public Task<Result<Success>> UpdateAsync(TEntity entity, CancellationToken cancellationToken)
+    public async Task<Success> UpdateAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        _ = _dbContext
+            .Set<TEntity>()
+            .Update(entity);
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return Result.Success;
     }
 }
