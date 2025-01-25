@@ -2,4 +2,4 @@
 
 using Growin.Domain.Features;
 
-public interface IProductReadRepository : ReadRepository<Product>;
+public interface IProductReadRepository : IReadRepository<Product>;

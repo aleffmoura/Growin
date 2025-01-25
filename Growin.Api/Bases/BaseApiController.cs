@@ -1,20 +1,20 @@
 ﻿namespace Growin.Api.Bases;
 
+using FluentValidation;
+using FunctionalConcepts.Errors;
 using FunctionalConcepts.Results;
-using FunctionalConcepts;
+using Growin.Api.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using FunctionalConcepts.Errors;
 using Newtonsoft.Json;
 using System.Net;
-using Growin.Api.Helpers;
-using FluentValidation;
 
 public class BaseApiController(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 
-    protected async Task<IActionResult> HandleCommand(IRequest<Result<Success>> cmd)
+    protected async Task<IActionResult> HandleCommand<TR>(IRequest<Result<TR>> cmd)
+        where TR : struct
     {
         var result = await _mediator.Send(cmd);
         return result.Match(succ => Ok(succ), HandleFailure)!;
@@ -23,8 +23,8 @@ public class BaseApiController(IMediator mediator) : ControllerBase
     private IActionResult HandleFailure(BaseError error)
         => error.Exception is ValidationException validationError
             ? Problem(title: "ValidationError",
-                              detail: JsonConvert.SerializeObject(validationError.Errors),
-                              statusCode: HttpStatusCode.BadRequest.GetHashCode())
+                      detail: JsonConvert.SerializeObject(validationError.Errors),
+                      statusCode: HttpStatusCode.BadRequest.GetHashCode())
             : MakePayload(error);
 
     private IActionResult MakePayload(BaseError error)

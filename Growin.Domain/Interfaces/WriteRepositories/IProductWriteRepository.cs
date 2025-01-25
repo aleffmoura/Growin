@@ -2,4 +2,4 @@
 
 using Growin.Domain.Features;
 
-public interface IProductWriteRepository : WriteRepository<Product>;
+public interface IProductWriteRepository : IWriteRepository<Product>;
