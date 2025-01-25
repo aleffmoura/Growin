@@ -1,6 +1,7 @@
 ﻿namespace Growin.Api.Controllers;
 
 using AutoMapper;
+using FunctionalConcepts;
 using Growin.Api.Bases;
 using Growin.ApplicationService.Features.Orders.Commands;
 using Growin.ApplicationService.Features.Orders.Queries;
@@ -24,4 +25,9 @@ public class OrdersController(IMediator mediator, IMapper mapper)
     [ProducesResponseType<PageResult<OrderResumeViewModel>>(statusCode: 200)]
     public async Task<IActionResult> Get(ODataQueryOptions<OrderResumeViewModel> queryOptions)
         => await HandleQueryable(new OrderCollectionQuery(), queryOptions);
+
+    [HttpPatch("{orderId}")]
+    [ProducesResponseType<Success>(statusCode: 204)]
+    public async Task<IActionResult> Patch([FromRoute] long orderId)
+            => await HandleCommand(new PatchOrderStatusCommand { OrderId = orderId });
 }
