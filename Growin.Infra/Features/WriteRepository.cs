@@ -5,6 +5,7 @@ using FunctionalConcepts.Results;
 using Growin.Domain.Bases;
 using Growin.Domain.Interfaces.WriteRepositories;
 using Growin.Infra.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,12 +23,11 @@ public class WriteRepository<TEntity>(GrowinDbContext dbContext) : IWriteReposit
 
     public async Task<Success> UpdateAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        _ = _dbContext
-            .Set<TEntity>()
-            .Update(entity);
+        var tracked = _dbContext.Update(entity);
+        tracked.State = EntityState.Modified;
 
         await _dbContext.SaveChangesAsync(cancellationToken);
-
+        tracked.State = EntityState.Detached;
         return Result.Success;
     }
 }
