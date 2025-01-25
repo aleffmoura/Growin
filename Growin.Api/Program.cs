@@ -1,3 +1,4 @@
+using Growin.Api.BackgroundServices;
 using Growin.Api.ServicesExtension;
 using Microsoft.AspNetCore.OData;
 using Newtonsoft.Json;
@@ -31,6 +32,8 @@ builder.Services
 builder.Services
        .AddEndpointsApiExplorer()
        .ConfigureSwagger();
+
+builder.Services.AddHostedService<OrderStatusCancelWorker>();
 
 builder.Host
        .ConfigureAutofac(builder.Configuration);

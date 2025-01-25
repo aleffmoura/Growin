@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 public class GrowinDbContext : DbContext
 {
-    public virtual DbSet<Order> Servers { get; set; }
-    public virtual DbSet<Product> Callbacks { get; set; }
+    public virtual DbSet<Order> Orders { get; set; }
+    public virtual DbSet<Product> Products { get; set; }
 
     public GrowinDbContext(DbContextOptions<GrowinDbContext> options) : base(options)
     {

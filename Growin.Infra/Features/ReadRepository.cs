@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 public class ReadRepository<TEntity>(GrowinDbContext dbContext) : IReadRepository<TEntity>
     where TEntity : Entity<TEntity, Identifier>
 {
-    private readonly GrowinDbContext _dbContext = dbContext;
+    protected readonly GrowinDbContext _dbContext = dbContext;
 
     public IQueryable<TEntity> GetAll()
         => _dbContext.Set<TEntity>().AsNoTracking().AsQueryable();
