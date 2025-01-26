@@ -10,6 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 function createData(
   id: number,
@@ -25,7 +26,7 @@ const rows = [
   createData(2, 12, 'reserved', 'product'),
   createData(3, 13, 'reserved', 'product'),
   createData(4, 14, 'reserved', 'product'),
-  createData(5, 16, 'reserved', 'product'),
+  createData(5, 16, 'closed', 'product'),
 ];
 
 export default function OrdersComponent() {
@@ -35,9 +36,10 @@ export default function OrdersComponent() {
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
-            <TableCell align="right">Product name</TableCell>
+            <TableCell align="right">Nome do produto</TableCell>
             <TableCell align="right">Quantidade da encomenda</TableCell>
             <TableCell align="right">Status</TableCell>
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,6 +51,7 @@ export default function OrdersComponent() {
               <TableCell align="right">{row.productName}</TableCell>
               <TableCell align="right">{row.quantity}</TableCell>
               <TableCell align="right">{row.status}</TableCell>
+              <TableCell align="right"><Button disabled={row.status !== 'reserved'}>Finalizar</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
