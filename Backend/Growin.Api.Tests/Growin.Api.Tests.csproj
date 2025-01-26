@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Growin\Growin.Api\Growin.Api.csproj" />
+    <ProjectReference Include="..\Growin.Api\Growin.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>
