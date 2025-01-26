@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growin.Api", "Growin.Api\Growin.Api.csproj", "{FF990662-1628-4306-A239-9DA8CEB456BE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Application", "1. Application", "{CC50CBBF-D76D-452B-BE0A-6A2C0825388C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Distribution", "1. Distribution", "{CC50CBBF-D76D-452B-BE0A-6A2C0825388C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{2C88FC16-320B-4B88-B346-151F6996E232}"
 EndProject
