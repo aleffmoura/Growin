@@ -202,7 +202,7 @@ public class CreateOrderHandlerTests
     {
         Id = 0,
         ProductId = createOrderCommand.ProductId,
-        Quantity = (ulong)createOrderCommand.Quantity,
+        Quantity = createOrderCommand.Quantity,
         Status = Domain.Enums.EOrderStatus.Reserved,
         CreatedAt = DateTime.UtcNow,
     };
