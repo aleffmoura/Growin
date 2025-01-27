@@ -12,26 +12,24 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import CreateOrderFormDialog from '../orders/create-order';
-
-function createData(id: number, name: string, quantity: number) {
-  return { id, name, quantity };
-}
-
-const rows = [
-  createData(1, 'Product 1', 100),
-  createData(2, 'Product 2', 100),
-  createData(3, 'Product 3', 0), 
-];
+import { ProductResumeViewModel } from '@/app/models/product-resume-view-model';
+import { useEffect, useState } from 'react';
+import { Box, CircularProgress } from '@mui/material';
+import { fetchProducts } from '@/app/utils/api';
 
 export default function ProductsComponent() {
-  const [open, setOpen] = React.useState(false);
-  const [selectedProduct, setSelectedProduct] = React.useState<{
+  const [open, setOpen] = useState(false);
+  const [products, setProducts] = useState<ProductResumeViewModel[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const [selectedProduct, setSelectedProduct] = useState<{
+    id: number,
     name: string;
     quantity: number;
   } | null>(null);
 
-  const handleOpenDialog = (productName: string, productQuantity: number) => {
-    setSelectedProduct({ name: productName, quantity: productQuantity });
+  const handleOpenDialog = (productId: number, productName: string, productQuantity: number) => {
+    setSelectedProduct({ id: productId, name: productName, quantity: productQuantity });
     setOpen(true);
   };
 
@@ -39,6 +37,18 @@ export default function ProductsComponent() {
     setOpen(false);
     setSelectedProduct(null);
   };
+
+  useEffect(() => {
+    async function loadProducts() {
+      const response = await fetchProducts();
+      setProducts(response);
+      setLoading(false);
+    }
+  
+    loadProducts();
+  }, []);
+  
+  if (loading) return (<Box sx={{ display: 'flex' }}><CircularProgress /></Box>);
 
   return (
     <>
@@ -53,18 +63,15 @@ export default function ProductsComponent() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            {products.map((product, index) => (
+              <TableRow key={`${product.id}-${index}`} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">
-                  {row.id}
+                  {product.id}
                 </TableCell>
-                <TableCell align="right">{row.name}</TableCell>
-                <TableCell align="right">{row.quantity}</TableCell>
+                <TableCell align="right">{product.name}</TableCell>
+                <TableCell align="right">{product.quantityInStock}</TableCell>
                 <TableCell align="right">
-                  <Button
-                    disabled={row.quantity <= 0}
-                    onClick={() => handleOpenDialog(row.name, row.quantity)}
-                  >
+                  <Button disabled={product.quantityInStock <= 0} onClick={() => handleOpenDialog(product.id, product.name, product.quantityInStock)}>
                     Encomendar
                   </Button>
                 </TableCell>
