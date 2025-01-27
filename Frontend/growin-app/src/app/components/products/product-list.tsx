@@ -28,26 +28,32 @@ export default function ProductsComponent() {
     quantity: number;
   } | null>(null);
 
+  // Função para carregar os produtos
+  const loadProducts = async () => {
+    setLoading(true);
+    const response = await fetchProducts();
+    setProducts(response);
+    setLoading(false);
+  };
+
   const handleOpenDialog = (productId: number, productName: string, productQuantity: number) => {
     setSelectedProduct({ id: productId, name: productName, quantity: productQuantity });
     setOpen(true);
   };
 
-  const handleCloseDialog = () => {
+  const handleCloseDialog = async (shouldReload: boolean = false) => {
     setOpen(false);
     setSelectedProduct(null);
+
+    if (shouldReload) {
+      await loadProducts();
+    }
   };
 
   useEffect(() => {
-    async function loadProducts() {
-      const response = await fetchProducts();
-      setProducts(response);
-      setLoading(false);
-    }
-  
     loadProducts();
   }, []);
-  
+
   if (loading) return (<Box sx={{ display: 'flex' }}><CircularProgress /></Box>);
 
   return (
@@ -71,7 +77,7 @@ export default function ProductsComponent() {
                 <TableCell align="right">{product.name}</TableCell>
                 <TableCell align="right">{product.quantityInStock}</TableCell>
                 <TableCell align="right">
-                  <Button disabled={product.quantityInStock <= 0} onClick={() => handleOpenDialog(product.id, product.name, product.quantityInStock)}>
+                  <Button disabled={product.quantityInStock <= 0} onClick={() => handleOpenDialog(product.id, product.name, product.quantityInStock)} >
                     Encomendar
                   </Button>
                 </TableCell>
@@ -85,6 +91,7 @@ export default function ProductsComponent() {
         <CreateOrderFormDialog
           open={open}
           onClose={handleCloseDialog}
+          productId={selectedProduct.id}
           product={selectedProduct.name}
           maxQuantity={selectedProduct.quantity}
         />
