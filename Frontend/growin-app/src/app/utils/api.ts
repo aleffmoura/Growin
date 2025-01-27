@@ -67,3 +67,44 @@ export async function patchOrder(orderId: number): Promise<string> {
     return `Erro ao comunicar com a API: ${error}`;
   }
 }
+
+export async function createOrder(productId: number, quantity: number): Promise<ApiResponse> {
+  try {
+    console.log(productId,quantity )
+    const response = await fetch('https://localhost:61868/Orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        productId,
+        quantity,
+      }),
+    });
+
+    if (response.ok) {
+      return { success: true };
+    }
+
+    if (response.status === 400) {
+      const errorResponse = await response.json();
+      const errorDetails = JSON.parse(errorResponse.detail);
+      if (Array.isArray(errorDetails)) {
+        const formattedErrors = errorDetails.map((err: any) => ({
+          propertyName: err.PropertyName,
+          errorMessage: err.ErrorMessage,
+        }));
+        return { success: false, errors: formattedErrors };
+      }
+
+      console.error('Formato inesperado em detail:', errorResponse.detail);
+      return { success: false };
+    }
+
+    console.error('Erro inesperado ao criar a ordem.');
+    return { success: false };
+  } catch (error) {
+    console.error('Erro de conexão ao criar encomenda:', error);
+    return { success: false };
+  }
+}
