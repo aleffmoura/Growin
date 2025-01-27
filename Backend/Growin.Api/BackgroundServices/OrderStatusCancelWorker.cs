@@ -20,7 +20,8 @@ public class OrderStatusCancelWorker(
     private readonly IProductReadRepository _productReadRepository = repositoryProductRead;
 
     private readonly IConfiguration _configuration = configuration;
-    private readonly int _cancellTimeMinutes = configuration.GetValue<int>("Workers:OrderStatusCancelWorker:CancelMinutes");
+    private readonly int _nextIterator = configuration.GetValue<int>("Workers:OrderStatusCancelWorker:NextIteratorInSeconds");
+    private readonly int _cancellIn = configuration.GetValue<int>("Workers:OrderStatusCancelWorker:CancellOrderInSeconds");
     private async Task Invoke()
     {
         var orders = _orderReadRepository.GetAllByStatus(Domain.Enums.EOrderStatus.Reserved).ToArray();
@@ -31,9 +32,9 @@ public class OrderStatusCancelWorker(
             {
                 var orderDate = order.CreatedAt;
                 var currentDate = DateTime.UtcNow;
-                var minutes = ( currentDate - orderDate ).TotalMinutes;
+                var minutes = ( currentDate - orderDate ).TotalSeconds;
 
-                if (minutes > _cancellTimeMinutes)
+                if (minutes > _cancellIn)
                 {
                     _ = await _orderWriteRepository.UpdateAsync(order with
                     {
@@ -74,7 +75,9 @@ public class OrderStatusCancelWorker(
 
                 await Invoke();
 
-                await Task.Delay(_cancellTimeMinutes * 1000, stoppingToken);
+                _logger.LogInformation($"End task: {nameof(OrderStatusCancelWorker)}...");
+
+                await Task.Delay(_nextIterator * 1000, stoppingToken);
             }
             catch (Exception ex)
             {

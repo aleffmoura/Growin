@@ -24,7 +24,8 @@ internal class OrderStatusCancelWorkerTests
     {
         var dictionary =
             new Dictionary<string, string?> {
-                { "Workers:OrderStatusCancelWorker:CancelMinutes", "5" }
+                { "Workers:OrderStatusCancelWorker:NextIteratorInSeconds", "5" },
+                { "Workers:OrderStatusCancelWorker:CancellOrderInSeconds", "5" }
             };
 
         _mockConfigudation = new ConfigurationBuilder()
@@ -97,7 +98,7 @@ internal class OrderStatusCancelWorkerTests
             new ()
             {
                 Id = 1,
-                CreatedAt = DateTime.UtcNow.AddMinutes(-4),
+                CreatedAt = DateTime.UtcNow.AddSeconds(-4),
                 ProductId = 1,
                 Quantity = 10,
                 Status = EOrderStatus.Reserved,
@@ -105,7 +106,7 @@ internal class OrderStatusCancelWorkerTests
             new ()
             {
                 Id = 1,
-                CreatedAt = DateTime.UtcNow.AddMinutes(-6),
+                CreatedAt = DateTime.UtcNow.AddSeconds(-6),
                 ProductId = 1,
                 Quantity = 5,
                 Status = EOrderStatus.Reserved,
@@ -113,7 +114,7 @@ internal class OrderStatusCancelWorkerTests
             new ()
             {
                 Id = 1,
-                CreatedAt = DateTime.UtcNow.AddMinutes(-7),
+                CreatedAt = DateTime.UtcNow.AddSeconds(-7),
                 ProductId = 1,
                 Quantity = 8,
                 Status = EOrderStatus.Reserved,

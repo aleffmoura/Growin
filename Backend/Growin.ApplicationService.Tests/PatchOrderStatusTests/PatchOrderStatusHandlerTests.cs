@@ -218,7 +218,7 @@ public class PatchOrderStatusHandlerTests
         Id = 1,
         ProductId = 1,
         Quantity = 100,
-        Status = EOrderStatus.Closed,
+        Status = EOrderStatus.Finished,
         CreatedAt = DateTime.UtcNow,
     };
     #endregion

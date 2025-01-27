@@ -2,9 +2,7 @@
 
 public enum EOrderStatus : uint
 {
-    None = 0,
-    Reserved = 1,
-    Closed = 2,
-    Canceled = 3,
-    Finished = 4,
+    Reserved = 0,
+    Canceled = 1,
+    Finished = 2,
 }

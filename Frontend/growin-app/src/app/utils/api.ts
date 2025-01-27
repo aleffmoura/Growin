@@ -3,7 +3,7 @@ import { OrderResumeViewModel } from '../models/order-resume-view-model';
 
 export async function fetchProducts(): Promise<ProductResumeViewModel[]> {
   try {
-    const response = await fetch('https://localhost:61868/Products');
+    const response = await fetch('https://localhost:7113/Products');
     
     if (!response.ok) {
       throw new Error('Erro ao buscar produtos');
@@ -26,7 +26,7 @@ export async function fetchProducts(): Promise<ProductResumeViewModel[]> {
 
 export async function fetchOrders(): Promise<OrderResumeViewModel[]> {
   try {
-    const response = await fetch('https://localhost:61868/Orders');
+    const response = await fetch('https://localhost:7113/Orders');
     
     if (!response.ok) {
       throw new Error('Erro ao buscar encomendas');
@@ -48,7 +48,7 @@ export async function fetchOrders(): Promise<OrderResumeViewModel[]> {
 }
 export async function patchOrder(orderId: number): Promise<string> {
   try {
-    const response = await fetch(`https://localhost:61868/Orders/${orderId}`, {
+    const response = await fetch(`https://localhost:7113/Orders/${orderId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export async function patchOrder(orderId: number): Promise<string> {
 export async function createOrder(productId: number, quantity: number): Promise<ApiResponse> {
   try {
     console.log(productId,quantity )
-    const response = await fetch('https://localhost:61868/Orders', {
+    const response = await fetch('https://localhost:7113/Orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
