@@ -31,8 +31,8 @@ services:
             context: .
             dockerfile: Growin.Api/Dockerfile
         ports:
-          - "8080"
-          - "8081"
+          - "5163:8080"
+          - "7113:8081"
         volumes:
           - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
           - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -46,6 +46,8 @@ services:
             DB_HOST: ${DB_HOST}
             DB_PORT: ${DB_PORT}
             ConnectionString__PrincipalDb: Host=${DB_HOST};Port=${DB_PORT};Username=${DB_USER};Password=${DB_PASSWORD};Database=${DB_NAME}
+            Workers__OrderStatusCancelWorker__NextIteratorInSeconds: 30
+            Workers__OrderStatusCancelWorker__CancellOrderInSeconds: 60
         depends_on:
             - postgresql
 volumes:

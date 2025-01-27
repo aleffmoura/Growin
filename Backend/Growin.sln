@@ -32,6 +32,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. External Itens", "0. External Itens", "{29DF5C15-B38F-4BF4-AF16-36FA809920B1}"
 	ProjectSection(SolutionItems) = preProject
 		.env = .env
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growin.Api.Tests", "Growin.Api.Tests\Growin.Api.Tests.csproj", "{88EE72E0-F66D-41A6-982C-DE04D6F823DE}"
