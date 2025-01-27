@@ -46,3 +46,24 @@ export async function fetchOrders(): Promise<OrderResumeViewModel[]> {
     return [];  
   }
 }
+export async function patchOrder(orderId: number): Promise<string> {
+  try {
+    const response = await fetch(`https://localhost:61868/Orders/${orderId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if (response.ok) {
+      return '';
+    }
+    console.log(response);
+    
+    const errorData = await response.json();
+    
+    return `Erro ${errorData.title} - ${errorData.detail}`;
+  } catch (error) {
+    return `Erro ao comunicar com a API: ${error}`;
+  }
+}

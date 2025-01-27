@@ -22,6 +22,7 @@ public class OrderProfile : Profile
         CreateMap<Order, OrderResumeViewModel>()
             .ForMember(ds => ds.Id, m => m.MapFrom(src => src.Id))
             .ForMember(ds => ds.Status, m => m.MapFrom(src => $"{src.Status}"))
-            .ForMember(ds => ds.Quantity, m => m.MapFrom(src => src.Quantity));
+            .ForMember(ds => ds.Quantity, m => m.MapFrom(src => src.Quantity))
+            .ForMember(ds => ds.ProductName, m => m.MapFrom(src => src.Product == null ? "" : src.Product.Name));
     }
 }

@@ -26,7 +26,7 @@ internal class ProductEntityConfiguration : IEntityTypeConfiguration<Product>
                .HasColumnType("timestamp with time zone");
 
         builder.HasMany(e => e.Orders)
-               .WithOne()
+               .WithOne(p => p.Product)
                .HasForeignKey(x => x.ProductId);
 
         builder.HasData(new Product
