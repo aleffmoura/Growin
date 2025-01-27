@@ -5,7 +5,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import ProductsComponent from './components/products/product-list';
-import OrdersComponent from './components/orders/orders';
+import OrdersComponent from './components/orders/order-list';
 
 interface TabPanelProps {
   children?: React.ReactNode;
