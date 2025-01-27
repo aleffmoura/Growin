@@ -25,6 +25,8 @@ services:
             - postgresql
     growin.api:
         image: ${DOCKER_REGISTRY-}growinapi
+        env_file:
+            - .env
         build:
             context: .
             dockerfile: Growin.Api/Dockerfile

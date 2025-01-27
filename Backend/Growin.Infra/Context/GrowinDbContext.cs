@@ -12,6 +12,12 @@ public class GrowinDbContext : DbContext
 
     public GrowinDbContext(DbContextOptions<GrowinDbContext> options) : base(options)
     {
+        try
+        {
+            Database.Migrate();
+        }
+        catch{ }
+
         ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
     }
 
